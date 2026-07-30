@@ -1,18 +1,19 @@
 # Aim: Geometry helper functions for Document detection
 '''
 Responsibilities of these helper fucntions are:-
-1. Order the detected corner points.
-2. Compute width and height of document after perspective correction.
-3. Validate that the detected shape is reasonable.
+- 1. Order the detected corner points.
+- 2. Compute width and height of document after perspective correction.
+- 3. Validate that the detected shape is reasonable.
 
 '''
-
 
 import numpy as np
 
 
-
 def euclidean_distance(p1: np.ndarray, p2: np.ndarray) -> float:
+    """
+    Compute Euclidean distance between 2 points.
+    """
     return float(np.linalg.norm(p1 - p2))
 
 
@@ -47,6 +48,9 @@ def order_points(points: np.ndarray) -> np.ndarray:
 
 
 def compute_destination_size(points: np.ndarray) -> tuple[int,int]:
+    """
+    Compute output width and height after perspective transform.
+    """
     tl, tr, br, bl = points
 
     width_top = euclidean_distance(tl, tr)
@@ -63,6 +67,9 @@ def compute_destination_size(points: np.ndarray) -> tuple[int,int]:
 
 
 def destination_points(width: int, height: int) -> np.ndarray:
+    """
+    Destination rectangle for perspective transform.
+    """
 
     return np.array(
         [
@@ -77,6 +84,9 @@ def destination_points(width: int, height: int) -> np.ndarray:
 
 
 def polygon_area(points: np.ndarray) -> float:
+    """
+    Compute polygon area using the Shoelace formula.
+    """    
 
     x = points[:, 0]
     y = points[:, 1]
@@ -86,6 +96,13 @@ def polygon_area(points: np.ndarray) -> float:
 
 
 def is_valid_document(points: np.ndarray, image_shape: tuple[int, int], min_area_ratio: float = 0.10) -> bool:
+    """"
+    Basic validation for detected document.
+
+    Checks:
+    - Exactly 4 points
+    - Sufficiently large area
+    """
 
     if points.shape != (4,2):
         return False
