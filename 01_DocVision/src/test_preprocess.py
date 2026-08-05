@@ -7,7 +7,7 @@ from utils import load_image, save_image
 from preprocess import ImagePreprocessor
 
 
-test_image = load_image(INPUT_DIR / 'messi.jpg')
+test_image = load_image(INPUT_DIR / 'page1.jpeg')
 
 preprocessor = ImagePreprocessor()
 
@@ -21,7 +21,7 @@ cv.imshow("EDGES IMAGE", result.edges)
 cv.imshow("CLOSE MORPHED IMAGE", result.closed)
 
 # Saving intermediate images
-save_image_path = OUTPUT_DIR / 'test_messi'
+save_image_path = OUTPUT_DIR
 
 save_image(result.blurred, save_image_path / 'blur.png')
 save_image(result.edges, save_image_path / 'edges.png')

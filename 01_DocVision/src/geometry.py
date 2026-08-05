@@ -95,7 +95,7 @@ def polygon_area(points: np.ndarray) -> float:
 
 
 
-def is_valid_document(points: np.ndarray, image_shape: tuple[int, int], min_area_ratio: float = 0.10) -> bool:
+def is_valid_document(points: np.ndarray, image_shape: tuple[int, int], min_area_ratio: float = 0.15) -> bool:
     """"
     Basic validation for detected document.
 
@@ -104,13 +104,30 @@ def is_valid_document(points: np.ndarray, image_shape: tuple[int, int], min_area
     - Sufficiently large area
     """
 
+    # 1. Reject polygons other than quadrilateral
     if points.shape != (4,2):
         return False
 
-    image_area = image_shape[0] * image_shape[1]        # area = height * width
+    width, height = image_shape[0], image_shape[1]
 
-    doc_area = polygon_area(points= points)
+    # 2. Reject very small document
+    image_area =  width * height                        # area = width * height
+
+    doc_area = polygon_area(points)
 
     doc_area_ratio = doc_area / image_area
 
-    return doc_area_ratio >= min_area_ratio
+    area_ratio_validity = doc_area_ratio >= min_area_ratio
+
+    # 3. Reject unreasonable aspect ratio
+    aspect_ratio = width / height                       # aspect_ratio = width / height
+
+    aspect_ratio_validity = True if (aspect_ratio <= 2.5 and aspect_ratio > 0.4) else False
+
+    # 4. Reject tiny dimensions
+    size_validity = True if (width > 150 and height > 150) else False
+
+    is_valid_document = area_ratio_validity and aspect_ratio_validity and size_validity
+
+    return is_valid_document
+

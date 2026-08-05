@@ -19,7 +19,9 @@ from config import (
     CANNY_LOW_THRESHOLD,
     CANNY_HIGH_THRESHOLD,
     MORPH_KERNEL_SIZE,
-    MORPH_ITERATIONS
+    MORPH_ITERATIONS,
+    ADAPTIVE_BLOCK_SIZE,
+    ADAPTIVE_C
 )
 
 
@@ -28,6 +30,7 @@ class PreprocessResult:
     resized: np.ndarray
     gray: np.ndarray
     blurred: np.ndarray
+    binary: np.ndarray
     edges: np.ndarray
     closed: np.ndarray
     scale: float
@@ -99,6 +102,20 @@ class ImagePreprocessor:
         return closed
 
 
+    def _adaptive_threshold(self, image: np.ndarray) -> np.ndarray:
+        """
+        Generate a binary image using adaptive thresholding
+        """
+        return cv.adaptiveThreshold(
+            image, 
+            255, 
+            cv.ADAPTIVE_THRESH_GAUSSIAN_C, 
+            cv.THRESH_BINARY_INV, 
+            ADAPTIVE_BLOCK_SIZE, 
+            ADAPTIVE_C
+        )
+
+        
     def run(self, image: np.ndarray) -> PreprocessResult:
         """
         Complete preprocessing pipeline
@@ -109,21 +126,22 @@ class ImagePreprocessor:
 
         smoothed_image = self._blur(gray_image)
 
-        edges = self._detect_edges(smoothed_image)
+        binary = self._adaptive_threshold(smoothed_image)
 
-        close_morphed = self._close_edges(edges)
+        close_morphed = self._close_edges(binary)
+
+        edges = self._detect_edges(close_morphed)
+
 
         processed_image = PreprocessResult(
             resized= resized,
             gray= gray_image,
             blurred= smoothed_image,
+            binary= binary,
             edges= edges,
             closed= close_morphed,
             scale= scale
         )
 
         return processed_image
-
-
-
 
