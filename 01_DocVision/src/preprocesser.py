@@ -13,9 +13,10 @@ import cv2 as cv
 import numpy as np
 from dataclasses import dataclass
 
+from common import grayscale, adaptive_threshold, blur
+
 from config import (
     MAX_IMAGE_DIMENSION,
-    GAUSSIAN_KERNEL_SIZE,
     CANNY_LOW_THRESHOLD,
     CANNY_HIGH_THRESHOLD,
     MORPH_KERNEL_SIZE,
@@ -37,7 +38,7 @@ class PreprocessResult:
 
 
 
-class ImagePreprocessor:
+class DocumentPreprocessor:
     """
     Preprocess image beofre document detection
     """
@@ -69,19 +70,6 @@ class ImagePreprocessor:
         return resized_image, scale
 
 
-
-    def _grayscale(self, image: np.ndarray) -> np.ndarray:
-        """
-        Converts BGR image to grascale
-        """
-        return cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-
-
-    def _blur(self, image: np.ndarray) -> np.ndarray:
-        """
-        Remove high frequency noise
-        """
-        return cv.GaussianBlur(image, GAUSSIAN_KERNEL_SIZE, sigmaX = 0)
 
 
     def _detect_edges(self, image: np.ndarray) -> np.ndarray:
@@ -122,11 +110,17 @@ class ImagePreprocessor:
         """
         resized, scale = self._resize(image)
 
-        gray_image = self._grayscale(resized)
+        gray_image = grayscale(resized)
 
-        smoothed_image = self._blur(gray_image)
+        smoothed_image = blur(gray_image)
 
-        binary = self._adaptive_threshold(smoothed_image)
+        binary = adaptive_threshold(
+            image= smoothed_image, 
+            adaptive_method= cv.ADAPTIVE_THRESH_GAUSSIAN_C,
+            threshold_type= cv.THRESH_BINARY_INV,
+            block_size= ADAPTIVE_BLOCK_SIZE,
+            c= ADAPTIVE_C
+        )
 
         close_morphed = self._close_edges(binary)
 

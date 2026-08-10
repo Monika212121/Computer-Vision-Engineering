@@ -4,12 +4,12 @@ import cv2 as cv
 
 from config import INPUT_DIR, OUTPUT_DIR
 from utils import load_image, save_image 
-from preprocess import ImagePreprocessor
+from preprocesser import DocumentPreprocessor
 
 
 test_image = load_image(INPUT_DIR / 'page1.jpeg')
 
-preprocessor = ImagePreprocessor()
+preprocessor = DocumentPreprocessor()
 
 result = preprocessor.run(test_image)
 

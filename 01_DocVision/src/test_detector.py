@@ -1,11 +1,11 @@
 from utils import load_image
 from config import INPUT_DIR
 from detector import DocumentDetector
-from preprocess import ImagePreprocessor
+from preprocess import DocumentPreprocessor
 
 image = load_image(INPUT_DIR / 'messi.jpg')
 
-preprocessor = ImagePreprocessor()
+preprocessor = DocumentPreprocessor()
 
 result = preprocessor.run(image)
 
