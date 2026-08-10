@@ -6,7 +6,7 @@ This repository contains real-world vision challenges, algorithm implementations
 
 ## List of Projects in this repository
 
-| Challenge                  | Domain                           | Key Concepts                    | Status             |
-| -------------------------- | ----------------------------     | ------------------------------- | ------------------ |
-| 1. DocVision               | Document Scanning / Analysis     | Edges, Contours, Homography     | Completed      |
+| Challenge                  | Domain                           | Key Concepts                                                                           | Status             |
+| -------------------------- | ----------------------------     | -------------------------------                                                        | ------------------ |
+| 1. DocVision               | Document Scanner                | Edge Detection, Contours, Morphology, Adaptive Thresholding, Perspective transform     | Completed          |
 
