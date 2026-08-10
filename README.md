@@ -8,5 +8,5 @@ This repository contains real-world vision challenges, algorithm implementations
 
 | Challenge                  | Domain                           | Key Concepts                    | Status             |
 | -------------------------- | ----------------------------     | ------------------------------- | ------------------ |
-| 1. DocVision               | Document Scanning / Analysis     | Edges, Contours, Homography     | In progress        |
+| 1. DocVision               | Document Scanning / Analysis     | Edges, Contours, Homography     | Completed      |
 
