@@ -6,7 +6,7 @@ Part of my **Computer Vision Challenge Series** focused on building practical CV
 
 ---
 
-## 🎯 Problem
+## Problem
 
 Given a photograph of a document:
 
@@ -17,7 +17,7 @@ Given a photograph of a document:
 
 ---
 
-## 🔄 Pipeline
+## Pipeline
 
 ```text
 Input Image
@@ -43,7 +43,7 @@ Enhancement
 Final Document
 ```
 
-## ⚠️ Failure Cases
+## Failure Cases
 
 1.) Non-quadrilateral contour
 
@@ -79,7 +79,7 @@ Possible causes:
 This showed that more preprocessing is not always better.
 
 
-## 🚀 Future Improvements
+## Future Improvements
 
 - Possible improvements for a stronger version:
 
