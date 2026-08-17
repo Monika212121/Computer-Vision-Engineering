@@ -20,9 +20,9 @@ class Visualizer:
         for x, y in maxima:
             x, y = int(round(x)), int(round(y))
 
-            cv.circle(output, (x, y), 8, (255, 0, 0), -1)
+            cv.circle(output, (x, y), 8, (0, 0, 255), -1)
 
-            cv.putText(output, f"MAX ({x}, {y})", (x+10, y+10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1, cv.LINE_AA)
+            cv.putText(output, f"MAX ({x}, {y})", (x+10, y+10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1, cv.LINE_AA)
 
 
         for x, y in minima:

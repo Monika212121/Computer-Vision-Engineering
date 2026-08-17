@@ -7,8 +7,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 INPUT_DIR = PROJECT_ROOT / 'data' / 'input'
 OUTPUT_DIR = PROJECT_ROOT / 'data' / 'output'
 
-INPUT_IMAGE_NAME = "image.png"
-OUTPUT_IMAGE_NAME = 'output_curve.jpg'
+INPUT_IMAGE_NAME = "curve9.png"
+OUTPUT_IMAGE_NAME = 'output' + INPUT_IMAGE_NAME
 
 
 THRESHOLD_VALUE = 10

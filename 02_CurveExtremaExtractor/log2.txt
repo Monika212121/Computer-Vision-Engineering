@@ -1,0 +1,9 @@
+Height:  422 Width:  473
+CurveExtractor -> get_curve_points(), No. of curve points:  473
+full_x:  473
+full_y:  473
+Missing curve points:  0
+Maxima:  []
+
+Minima:  []
+Image saved successfully in path: D:\Computer-Vision-Engineering\02_CurveExtremaExtractor\data\output\outputcurve2.png
