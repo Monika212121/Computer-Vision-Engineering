@@ -51,6 +51,8 @@ class CurveExtractor:
 
         curve_points_list = self._convert_curve_points(curve_points= curve_pts)
 
+        print("\nCurve points: ", curve_points_list)
+
         return curve_points_list
 
 

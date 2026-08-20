@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 from pathlib import Path
-
+from config import OUTPUT_DIR
 
 
 def load_image(image_path: str | Path) -> np.ndarray:
@@ -30,5 +30,13 @@ def save_image(image: np.ndarray, save_path: str | Path) -> None:
     cv.imwrite(str(save_path), image)
 
     print(f"Image saved successfully in path: {save_path}")
+
+    return
+
+
+def draw_image(image: np.ndarray, title: str) -> None:
+    title += '.png'
+
+    save_image(image= image, save_path= OUTPUT_DIR  / 'curve7' / title)
 
     return

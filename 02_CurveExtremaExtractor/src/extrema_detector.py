@@ -40,7 +40,7 @@ class ExtremaDetector:
 
         minima = np.column_stack((full_x[self.minima_indices], smoothed_y[self.minima_indices]))
 
-        print("Maxima: ", maxima)
+        print("\nMaxima: ", maxima)
         print("\nMinima: ", minima)
 
         return (maxima, minima)

@@ -62,7 +62,11 @@ class SignalProcessor:
 
         interpolated_y = self._interpolate_missing_values()
 
+        #print("\nInterpolated y values: ", interpolated_y)
+
         smoothed_curve = self._smooth_curve(interpolated_y= interpolated_y)
+
+        #print("\nSmoothed curve (y values): ", smoothed_curve)
 
         return smoothed_curve
 

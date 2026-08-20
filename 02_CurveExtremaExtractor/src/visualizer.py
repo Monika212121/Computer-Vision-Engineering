@@ -6,11 +6,11 @@ from config import OUTPUT_IMAGE_NAME, OUTPUT_DIR
 from utils import save_image
 
 
-
 class Visualizer:
 
     def __init__(self):
         pass
+
 
 
     def draw_extrema_on_curve(self, image: np.ndarray, minima: np.ndarray, maxima: np.ndarray) -> np.ndarray:

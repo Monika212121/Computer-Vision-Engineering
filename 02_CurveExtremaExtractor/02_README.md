@@ -95,3 +95,60 @@ Level 1 — Interview Problem
 
 
 NOTE: This is the version I'd actually keep in the repository. **Short enough to read, but it still shows the interviewer that you understood the problem, approach, failure cases, and engineering structure.**
+
+
+
+
+## Reason for each step in pipeline:
+
+**Image → Grayscale → Thresholding → Binary Mask → Morphological cleanup → Curve extraction → Coordinate reconstruction → Interpolation → Extrema detection → Visualization**
+
+### 1. Grayscale
+
+Reduce the image to the intensity information needed for separating the curve from its background.
+
+### 2. Thresholding
+
+Convert the grayscale image into a binary representation.
+
+### 3. Binary mask
+
+Isolate the curve pixels from the background.
+
+### 4. Morphological cleanup
+
+Remove small gaps/noise and make the extracted curve more usable.
+
+### 5. Curve extraction
+
+Recover the curve coordinates from the binary representation.
+
+### 6. Coordinate reconstruction
+
+Convert image pixels into an ordered `(x, y)` representation of the curve.
+
+### 7. Interpolation
+
+The extracted curve exists only at discrete pixel locations, so interpolation gives a smoother representation for downstream analysis.
+
+### 8. Extrema detection
+
+Once the curve is represented as a signal, local maxima and minima can be identified from its neighborhood behavior.
+
+### 9. Visualization
+
+Map the detected extrema back onto the original image.
+
+**The important part isn't the individual OpenCV functions.**
+
+It's the reasoning:
+
+> **Don't start with the final algorithm. Start by asking what representation you need for the problem.**
+
+For interview problems like this, I find it useful to think in three stages:
+
+**Pixels → Representation → Decision**
+
+The better the intermediate representation, the simpler the final decision becomes.
+
+

@@ -1,8 +1,7 @@
 import cv2 as cv
 import numpy as np
 from config import THRESHOLD_VALUE, THRESHOLD_TYPE
-
-
+from utils import draw_image
 
 
 class ImagePreprocessor:
@@ -33,8 +32,12 @@ class ImagePreprocessor:
     def process(self, image: np.ndarray) -> np.ndarray:
 
         gray_image = self._apply_grayscale(image = image)
+        
+        draw_image(image= gray_image, title= "gray_image")
 
         binary_image = self._apply_threshold(image= gray_image)
+        
+        draw_image(image= binary_image, title= "binary_image")
 
         return binary_image
 
